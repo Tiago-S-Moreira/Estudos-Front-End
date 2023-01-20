@@ -1,0 +1,223 @@
+Objetos
+
+Uma caneta é um objeto.
+
+* Propriedades e Funcionalidades
+* Estado e Comportamentos
+* Atributos e Métodos.
+
+Abstratos vs Mundo Real
+
+* Pessoa
+* Aluno
+* Produto
+* Carrinho de Comportamentos
+
+Porém, alguns objetos na programaçao não são faceis de identificar,
+pois são abstratos como, por exemplo:
+
+* Autenticação
+* Autorização
+
+-- Nem todo objeto do mundo real fará parte do seu sistema--
+
+Classes
+
+As classes na orientação a objetos funcionam como um molde para 
+os objetos. Os objetos são criados a partir de uma classe e muitos deles
+podem ser feitos da mesma classe.
+
+* Exemplo: Máquina de biscoito
+    * Instâncias
+
+Classes em JavaScript
+
+* Syntactical sugar
+* Prototype
+
+Encapsulamento
+
+Dirigir carro vs conhecer o motor do carro.
+
+* Colocar numa capsula
+* Agrupamento de funcões e variáveis
+* Esconder detalhes de implementação
+* Camada de segurança para os atributos e metodos.
+
+-- Estrutural
+
+let altura = 50
+let largura = 50
+
+function calcularArea(){
+    return altura * largura
+}
+ let area =  calcularArea()
+
+ -- Orientada a Objetos
+
+ class Poligono{
+    constructor(altura, largura){
+        this.altura = altura
+        this.largura = largura
+    }
+    get area(){
+        return this.#calcularArea
+    }
+    #calcularArea(){
+        return this.altura * this.largura
+    }
+ }
+ //criar o objeto
+let poligono = new Poligono(50, 60)
+
+Confusão e Solução
+
+Programação Estruturada
+
+* Processa a entrada e manipulação dos dados, até a saida.
+* Uso de sequencias, estruturas de repetiçoes e condições.
+* Uso de uma rotina maior, ou sub-rotinas.
+* Não existem restrições as variaveis
+
+Programção Orientada a Objetos
+
+* Surge para trazer um cuidado ao uso estruturado.
+    * Não elimina por completo o uso estruturado.
+* Conceitos como Objetos e Classes
+* Cuidados com variaveis e rotinas (Encapsulamento).
+* Melhor reuso de código(Herança).
+
+-- Estruturado--
+
+var valorHora = 50
+var tempoEstimado = 20
+var desconto = valorHora * tempoEstimado * (10 / 100)
+var custoEstimado = valorHora * tempoEstimado - desconto
+console.log(custoEstimado)
+
+-- POO --
+
+const job = new Job()
+job.valorHora = 50
+job.tempoEstimado = 20
+job.desconto = 10
+const custoEstimado =  job.calcularEstimativa()
+console.log(custoEstimado)
+
+Herança
+
+* Pais e filhos
+* Objetos podem herdar, ou estender, características bases.
+* Uma cópia de atributos e metodos de outra classe.
+
+class Veiculo {
+    rodas = 4;^
+
+    mover(direcao){}
+    virar(direcao){}
+}
+class Moto extends Veiculo{
+    constructor(){
+        super() // puxar atributos e metodos do pai
+        this.rodas = 2
+    }
+}
+
+-- Saiba --
+
+* Um objeto pode estender de outro objeto que pode estender
+de outro objeto.
+* Facil reutilização de codigo.
+
+Polimorfismo
+
+Quando um objeto estende de outro(herança) talvez haja necessidade
+de reescrever uma ou mais características(atributos e metodos) nesse 
+novo objeto.
+
+Recriaremos então um metodo (ou mais) da classe herdada.
+
+Polimorfismo significa muitas formas.
+
+class Atleta{
+    peso;
+    categoria;
+
+    constructor(peso){
+        this.peso = peso
+    }
+    definirCategoria(){
+        if(this.peso <= 50){
+            this.categoria = 'infantil'
+        }
+        else if(this.peso <= 65){
+            this.categoria = 'juvenil'
+        }
+        else{
+            this.categoria = 'adulto'
+        }
+    }
+}
+
+class Lutador extends Atleta{
+    constructor(peso){
+        super(peso)
+    }
+    definirCategoria(){
+        if(this.peso <= 54){
+            this.categoria = 'pluma'
+        }
+        else if(this.peso <= 60){
+            this.categoria = 'leve'
+        }
+        else if(this.peso <= 75){
+            this.categoria = 'meio-leve'
+        }
+        else{
+            this.categoria = 'pesado'
+        }
+    }
+}
+
+
+Abstração
+
+Template ou Identidade de uma classe que será construida no futuro.
+
+* Atributos e metodos podem ser criados na classe Abstração (Superclasse) mais
+* A implementação dos metodos e atributos, só poderá ser feita na classe que irá 
+herdar essa Abstração.
+
+
+class Parafuso {
+    constructor(){
+        if(this.constructor === Parafuso)
+        throw new Error('Classe abstrata não pode ser Instânciada')
+    }
+    get tipo(){
+        throw new Error ('Método "get tipo()" precisa ser implementado')
+    }
+}
+class Fenda extends Parafuso{
+    constructor() { super() } {
+        get tipo (){
+            return 'fenda' 
+        }
+    }
+    class Philips extends Parafuso{
+        constructor() { super() }
+        get tipo(){
+            return 'philips'
+        }
+    }
+
+class Allen extends Parafuso {}
+new Parafuso() // Classe abstrata nao pode ser Instânciada
+let fenda =  new Fenda()
+let philips = new Philips()
+let allen =  new Allen()
+
+console.log(fenda.tipo, philips.tipo)
+console.log(allen.tipo) // Método "get tipo()" precisa ser implementado
+ 
